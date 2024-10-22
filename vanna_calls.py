@@ -23,19 +23,19 @@ class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
 @st.cache_resource(ttl=3600)
 def setup_vanna():
     client = OpenAI(base_url=CHAT_MODEL_BASE_URL, api_key="fake")
-    logger.info(f"Using model {CHAT_MODEL} with temp {TEMP} and max_tokens {MAX_TOKENS} at url {CHAT_MODEL_BASE_URL}")
+    print(f"Using model {CHAT_MODEL} with temp {TEMP} and max_tokens {MAX_TOKENS} at url {CHAT_MODEL_BASE_URL}")
     vn = MyVanna(client=client, config={'model': CHAT_MODEL, 'path': DB_PATH, 'max_tokens': MAX_TOKENS})
 
     vn.connect_to_mssql(odbc_conn_str=DATABASE_CONNECTION_STRING)
     training_data = vn.get_training_data()
     if training_data.count().id == 0:
-        logger.info("empty vector db, initializing..")
+        print("empty vector db, initializing..")
         df_information_schema = vn.run_sql("SELECT * FROM INFORMATION_SCHEMA.COLUMNS")
         plan = vn.get_training_plan_generic(df_information_schema)
         vn.train(plan=plan)
     else:
-        logger.info("vector db already initialized, skipping..")
-        logger.info(f"vector db has {training_data.count().id} records")
+        print("vector db already initialized, skipping..")
+        print(f"vector db has {training_data.count().id} records")
     return vn
 
 @st.cache_data(show_spinner="Generating sample questions ...")

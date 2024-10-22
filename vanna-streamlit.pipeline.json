@@ -12,8 +12,8 @@
     },
     "podPatch": "[{\"op\": \"add\",\"path\": \"/volumes/-\",\"value\": {\"name\": \"data-store\",\"hostpath\": {\"path\": \"/var/snap/microk8s/common/vanna\",\"type\": \"Directory\"}}}, {\"op\": \"add\",\"path\": \"/containers/0/volumeMounts/-\",\"value\": {\"mountPath\": \"/data\",\"name\": \"data-store\"}}]",
     "service": {
-      "externalPort": 30084,
-      "internalPort": 8084,
+      "externalPort": 30085,
+      "internalPort": 8501,
       "type": "NodePort"
     },
     "transform": {
