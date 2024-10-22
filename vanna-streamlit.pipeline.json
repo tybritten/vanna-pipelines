@@ -28,7 +28,7 @@
         "CHAT_MODEL": "meta-llama/Meta-Llama-3.1-8B-Instruct",
         "DATABASE_CONNECTION_STRING": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=IP,PORT;DATABASE=HPDemo;UID=sa;PWD=password"
       },
-      "image": "vmtyler/pdk:vanna-0.0.3a",
+      "image": "vmtyler/pdk:vanna-pipelines-v1",
       "stdin": [
         "streamlit run app.py"
       ]
